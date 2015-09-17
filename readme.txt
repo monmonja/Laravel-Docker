@@ -9,8 +9,11 @@ unzip
 *********************
 DOWNLOAD LARAVEL, INSTALL BOWER, GULP
 *********************
-./create_app.sh
-sudo chmod -R 777 www
+    ./create_app.sh
+
+# world permission is okay for development purpose
+    sudo chmod -R 777 www
+    sudo chmod -R guo+w www/storage
 
 *********************
 INSTALL DOCKER
@@ -73,5 +76,6 @@ docker run -i -t apache_php /bin/bash
 /etc/php-5.6.d/30-wddx.ini
 
 
-# npm install permission error
-sudo chown -R $(whoami) ~/.npm
+# check error log
+login to running image (see above)
+    tail -f /var/log/apache2/error.log
