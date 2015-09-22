@@ -1,7 +1,0 @@
-#!/bin/bash
-
-cd /tmp
-git clone https://github.com/phadej/igbinary
-cd igbinary
-
-echo -e "nn[igbinary]nhttps://github.com/igbinary/igbinary/nextension=igbinary.sonn;Use igbinary as session serializernsession.serialize_handler=igbinarynn;Enable or disable compacting of duplicate stringsnigbinary.compact_strings=Onnn;Use igbinary as serializer in APC cachenapc.serializer=igbinary" >> /etc/php5/apache2/conf.d/igbinary.ini

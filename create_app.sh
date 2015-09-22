@@ -7,6 +7,7 @@ unzip -o larapack.zip
 mv larapack www
 
 cp -r ./template_app/. www
+mv www/.htaccess www/public
 cd www
 php artisan key:generate
 

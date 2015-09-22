@@ -1,10 +1,12 @@
 *********************
 REQUIREMENTS
 *********************
-nodejs
-docker (see below)
-curl
-unzip
+MacOS (only tested in mac 10.10.5)
+NodeJS
+Docker (see below)
+Curl
+Unzip
+
 
 *********************
 DOWNLOAD LARAVEL, INSTALL BOWER, GULP
@@ -26,14 +28,11 @@ open terminal execute these
      boot2docker start
      boot2docker shellinit
 
-
-
 ******************
 CREATE IMAGE
 ******************
     cd <this folder>
     docker build -t apache_php .
-
 
 ******************
 RUN IMAGE
@@ -42,7 +41,6 @@ RUN IMAGE
     docker run -v "$(pwd)/www":/var/www/html --name apache_php-test -e PHP_ERROR_REPORTING='E_ALL & ~E_STRICT' -d -p 80:80 apache_php
     open http://$(boot2docker ip 2>/dev/null)/
 
-# -e PHP_ERROR_REPORTING='E_ALL & ~E_STRICT'
 
 *********************
 REMOVE RUNNING IMAGE
@@ -62,13 +60,12 @@ CLEAN UP LOCAL CACHE
 ************************
 SSH TO RUNNING IMAGE
 ************************
-docker exec -it $(docker ps -q  2>&1 | (head -n1 )) /bin/bash
+    docker exec -it $(docker ps -q  2>&1 | (head -n1 )) /bin/bash
 
 ************************
 SSH TO CONTAINER
 ************************
-docker run -i -t apache_php /bin/bash
-
+    docker run -i -t apache_php /bin/bash
 
 
 # not enabled extension
@@ -79,3 +76,23 @@ docker run -i -t apache_php /bin/bash
 # check error log
 login to running image (see above)
     tail -f /var/log/apache2/error.log
+
+
+************************
+LARAVEL RELATED
+************************
+# add routes at app/Http/routes.php
+    Route::resource('users', 'UsersController');
+    Route::get('home', 'HomeController@index');
+
+# add controller at app/Http/Controllers/*Controller.php
+    <?php namespace App\Http\Controllers;
+    class HomeController extends Controller {
+
+    }
+
+
+****************
+REFERENCE
+****************
+https://github.com/tutumcloud/lamp
